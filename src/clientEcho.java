@@ -1,6 +1,7 @@
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.Scanner;
 
 public class clientEcho {
     final static int taille = 1024;
@@ -11,14 +12,24 @@ public class clientEcho {
         InetAddress serveur = InetAddress.getByName("127.0.0.1");
         int length = 1024;
         byte buffer[] = new byte[taille];
-        DatagramPacket dataSent = new DatagramPacket(buffer,length,serveur,serverEcho.port);
+
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Write your own message ...");
+        String toSend = myObj.nextLine() + "-end-";
+        buffer = toSend.getBytes("UTF-8");
+
+        DatagramPacket dataSent = new DatagramPacket(buffer,buffer.length,serveur,serverEcho.port);
         DatagramSocket socket = new DatagramSocket();
 
         socket.send(dataSent);
 
         DatagramPacket dataReceived = new DatagramPacket(new byte[length],length);
         socket.receive(dataReceived);
-        System.out.println("Data received : " + new String(dataReceived.getData()));
+
+        String messageReceived = new String(dataReceived.getData());
+        messageReceived = messageReceived.split("-end-")[0];
+
+        System.out.println("Data received : " + messageReceived);
         System.out.println("From : " + dataReceived.getAddress() + ":" + dataReceived.getPort());
     }
 }
