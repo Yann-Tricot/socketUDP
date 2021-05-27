@@ -28,13 +28,13 @@ public class clientConcurrent {
             DatagramPacket dataSent = new DatagramPacket(buffer, buffer.length, server, port);
             socket.send(dataSent);          // Envoie du message
 
-            DatagramPacket dataRecieved = new DatagramPacket(new byte[length], length);
-            socket.receive(dataRecieved);   // reception du message
+            DatagramPacket dataReceived = new DatagramPacket(new byte[length], length);
+            socket.receive(dataReceived);   // reception du message
 
-            String msg = new String(dataRecieved.getData());
+            String msg = new String(dataReceived.getData());
             String msgRecu = msg.split(""+ CHAR_SEPARATOR)[0];
             System.out.println("message : " + msgRecu);       // traitement et affichage du message
-            port = dataRecieved.getPort();
+            port = dataReceived.getPort();
             if(serverConcurrent.MESSAGE_END_SERVER.equals(msgRecu)){
                 onGoingCom = false;
             }
