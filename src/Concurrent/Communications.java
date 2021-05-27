@@ -16,7 +16,7 @@ public class Communications extends Thread{
     private int port=0;
 
     // Variables pour buffer d'envoi d'un message à un client
-    final static char CHAR_SEPARATOR = 'µ';
+    final static char CHAR_SEPARATOR = '@';
     static byte[] buffer = new byte[serverConcurrent.length];
 
     public Communications(DatagramPacket data) throws SocketException {

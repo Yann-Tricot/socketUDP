@@ -18,7 +18,7 @@ public class serverConcurrent {
     // Variables pour buffer de réception
     final static int length = 1024;
     static byte[] buffer = new byte[length];
-    final static char CHAR_SEPARATOR = 'µ';
+    final static char CHAR_SEPARATOR = '@';
 
     public serverConcurrent() throws SocketException {
         socket = new DatagramSocket(PORT);
