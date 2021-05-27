@@ -26,10 +26,10 @@ public class serverConcurrent {
             try {
                 socket.receive(data);
                 String msg = new String(data.getData());
-                String msgRecu = msg.split(""+ CHAR_SEPARATOR)[0];
-                System.out.println("message :" + msgRecu);
+                String receivedMsg = msg.split(""+ CHAR_SEPARATOR)[0];
+                System.out.println("message :" + receivedMsg);
 
-                if(MESSAGE_CONNECTION.equals(msgRecu)){
+                if(MESSAGE_CONNECTION.equals(receivedMsg)){
                     Communications com = new Communications(data);
                     com.start();
                 }
