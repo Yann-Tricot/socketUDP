@@ -10,7 +10,7 @@ public class clientConcurrent {
     // Variables pour buffer d'envoi d'un message
     static byte[] buffer;
     final static int length = 1024;
-    final static char CHAR_SEPARATOR = 'µ';
+    final static char CHAR_SEPARATOR = '@';
     final static String MESSAGE_END_CLIENT = "End connection";
 
     // Port de connexion au serveur
