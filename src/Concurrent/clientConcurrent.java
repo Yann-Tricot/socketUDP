@@ -22,7 +22,7 @@ public class clientConcurrent {
         port = serverConcurrent.PORT;
         boolean onGoingCom = true;
         while (onGoingCom) {
-            // On récupèrev le message saisi par le client dans la console
+            // On récupère le message saisi par le client dans la console
             // Et on met en forme ce message avec CHAR_SEPARATOR
             Scanner scanner = new Scanner(System.in);
             String message = scanner.nextLine();
@@ -40,7 +40,7 @@ public class clientConcurrent {
             // On traite le message receptionné pour l'afficher à l'utilisateur
             String msg = new String(dataRecieved.getData());
             String msgRecu = msg.split(""+ CHAR_SEPARATOR)[0];
-            System.out.println("message : " + msgRecu);
+            System.out.println("message_SERVER: " + msgRecu);
             port = dataRecieved.getPort();
 
             // Si le message receptionné est celui d'arrêt on arrête donc la connexion

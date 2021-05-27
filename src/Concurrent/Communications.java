@@ -43,7 +43,7 @@ public class Communications extends Thread{
             // On recupère le message et on traite celui-ci pour nos tests.
             String msg = new String(data.getData());
             String receivedMsg = msg.split(""+ CHAR_SEPARATOR)[0];
-            System.out.println("message :" + receivedMsg);
+            System.out.println("PORT: " + port + " - "+ data.getAddress() + "\nmessage_CLIENT: " + receivedMsg);
 
             // Si le message reçu est le bon pour mettre fin à la connexion on arrête celle-ci et notifie le client
             if(clientConcurrent.MESSAGE_END_CLIENT.equals(receivedMsg)){
