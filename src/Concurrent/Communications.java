@@ -4,16 +4,34 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.util.HashMap;
 
 public class Communications extends Thread{
     private final DatagramPacket data;
     final static char CHAR_SEPARATOR = 'µ';
     static byte[] buffer = new byte[serverConcurrent.length];
-    private final DatagramSocket socket;
+    private DatagramSocket socket;
+
+    final static int START_PORT = 8000;
+    final static int FINAL_PORT = 60000;
+    private int port=0;
 
     public Communications(DatagramPacket data) throws SocketException {
         this.data = data;
         socket = new DatagramSocket();
+        HashMap<Integer,Boolean> map = Tools.TestPort.testPort(START_PORT, FINAL_PORT);
+        boolean portNonTrouve = true;
+        int testCourant = START_PORT;
+        do{
+            if(map.get(testCourant)) {
+                port = testCourant;
+                socket = new DatagramSocket(testCourant);
+                portNonTrouve = false;
+            }
+            else
+                testCourant++;
+        }while (portNonTrouve);
+        System.out.println(port);
     }
 
     @Override

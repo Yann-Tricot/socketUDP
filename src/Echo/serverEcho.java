@@ -33,18 +33,4 @@ public class serverEcho {
             socket.send(data);
         }
     }
-
-    public static ArrayList<Integer> testPort(int portStart, int portEnd){
-        ArrayList<Integer> occupiedPorts = new ArrayList<Integer>();
-        for (int index = portStart; index <= portEnd; index++){
-            try {
-                DatagramSocket socket = new DatagramSocket(index);
-                socket.connect(new InetSocketAddress("127.0.0.1", index));
-                socket.close();
-            } catch (SocketException e){
-                occupiedPorts.add(index);
-            }
-        }
-        return occupiedPorts;
-    }
 }
