@@ -34,11 +34,11 @@ public class clientConcurrent {
             socket.send(dataSent);
 
             // On réceptionne un message
-            DatagramPacket dataRecieved = new DatagramPacket(new byte[length], length);
-            socket.receive(dataRecieved);
+            DatagramPacket dataReceived = new DatagramPacket(new byte[length], length);
+            socket.receive(dataReceived);
 
             // On traite le message receptionné pour l'afficher à l'utilisateur
-            String msg = new String(dataRecieved.getData());
+            String msg = new String(dataReceived.getData());
             String msgRecu = msg.split(""+ CHAR_SEPARATOR)[0];
             System.out.println("message_SERVER: " + msgRecu);
             port = dataRecieved.getPort();
