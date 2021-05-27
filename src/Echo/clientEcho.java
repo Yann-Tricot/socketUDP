@@ -1,3 +1,7 @@
+package Echo;
+
+import Echo.serverEcho;
+
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -18,7 +22,7 @@ public class clientEcho {
         String toSend = myObj.nextLine() + "-end-";
         buffer = toSend.getBytes("UTF-8");
 
-        DatagramPacket dataSent = new DatagramPacket(buffer,buffer.length,serveur,serverEcho.port);
+        DatagramPacket dataSent = new DatagramPacket(buffer,buffer.length,serveur, serverEcho.port);
         DatagramSocket socket = new DatagramSocket();
 
         socket.send(dataSent);
