@@ -1,4 +1,6 @@
-package Concurrent;
+package Concurrent.Serveur;
+
+import Concurrent.Communications;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -7,10 +9,12 @@ import java.net.SocketException;
 
 public class serverConcurrent {
     // Variables message de discussion du serveur
-    final static String MESSAGE_END_SERVER = "OK connection ended";
-    final static String MESSAGE_SERVER = "OK";
-    final static String MESSAGE_CONNECTION = "Connection";
-    final static String MESSAGE_CONNECTION_DENIED = "Connection denied ...";
+    private final static String MESSAGE_END_SERVER = "OK connection ended";
+    private final static String MESSAGE_SERVER = "OK";
+    private final static String MESSAGE_CONNECTION = "Connection";
+    private final static String MESSAGE_CONNECTION_DENIED = "Connection denied ...";
+
+
 
     final static int PORT = 8532;
     DatagramSocket socket;
@@ -22,6 +26,23 @@ public class serverConcurrent {
 
     public serverConcurrent() throws SocketException {
         socket = new DatagramSocket(PORT);
+    }
+
+    // Getters
+    public static String getMessageEndServer() {
+        return MESSAGE_END_SERVER;
+    }
+
+    public static String getMessageServer() {
+        return MESSAGE_SERVER;
+    }
+
+    public static int getLength() {
+        return length;
+    }
+
+    public static int getPORT() {
+        return PORT;
     }
 
     /**
@@ -43,7 +64,7 @@ public class serverConcurrent {
                     Communications com = new Communications(data);
                     com.start();
                 }
-                // Sinon, le message reçu n'est pas le bon pour authoriser la connexion on renvoi un msg d'erreur.
+                // Sinon, le message reçu n'est pas le bon pour autoriser la connexion on renvoie un message d'erreur.
                 else {
                     buffer = (MESSAGE_CONNECTION_DENIED + CHAR_SEPARATOR).getBytes();
                     data.setData(buffer);

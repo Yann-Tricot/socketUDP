@@ -1,5 +1,8 @@
 package Concurrent;
 
+import Concurrent.Client.clientConcurrent;
+import Concurrent.Serveur.serverConcurrent;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -17,7 +20,7 @@ public class Communications extends Thread{
 
     // Variables pour buffer d'envoi d'un message à un client
     final static char CHAR_SEPARATOR = '@';
-    static byte[] buffer = new byte[serverConcurrent.length];
+    static byte[] buffer = new byte[serverConcurrent.getLength()];
 
     public Communications(DatagramPacket data) throws SocketException {
         this.data = data;
@@ -46,8 +49,8 @@ public class Communications extends Thread{
             System.out.println("PORT: " + port + " - "+ data.getAddress() + "\nmessage_CLIENT: " + receivedMsg);
 
             // Si le message reçu est le bon pour mettre fin à la connexion on arrête celle-ci et notifie le client
-            if(clientConcurrent.MESSAGE_END_CLIENT.equals(receivedMsg)){
-                buffer = (serverConcurrent.MESSAGE_END_SERVER + CHAR_SEPARATOR).getBytes();
+            if(clientConcurrent.getMessageEndClient().equals(receivedMsg)){
+                buffer = (serverConcurrent.getMessageEndServer() + CHAR_SEPARATOR).getBytes();
                 data.setData(buffer);
                 onGoingCom = false;
                 try {
@@ -58,7 +61,7 @@ public class Communications extends Thread{
             }
             // Sinon, le message n'est pas celui pour mettre fin à la connexion et on poursuit l'échange
             else{
-                byte[] bufferMsg = (serverConcurrent.MESSAGE_SERVER + CHAR_SEPARATOR).getBytes();
+                byte[] bufferMsg = (serverConcurrent.getMessageEndServer() + CHAR_SEPARATOR).getBytes();
                 data.setData(bufferMsg);
                 try {
                     socket.send(data);
