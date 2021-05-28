@@ -1,4 +1,4 @@
-package Concurrent;
+package Concurrent.Serveur;
 
 import java.net.SocketException;
 

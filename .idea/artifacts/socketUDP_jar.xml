@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="socketUDP:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/socketUDP_jar</output-path>
+    <root id="archive" name="socketUDP.jar">
+      <element id="module-output" name="socketUDP" />
+    </root>
+  </artifact>
+</component>
